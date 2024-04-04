@@ -110,7 +110,7 @@ namespace :minor do
   task :release do
     version = File.read("VERSION").strip
     # create the new minor version string
-    major, minor, patch = version.split('.')
+    major, minor = version.split('.')
     major_number = major.to_i
     new_minor_number = minor.to_i + 1
     new_minor_version = "#{major_number}.#{new_minor_number}.0"
