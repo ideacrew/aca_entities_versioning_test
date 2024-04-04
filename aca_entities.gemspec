@@ -4,7 +4,8 @@ require_relative 'lib/aca_entities/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'aca_entities'
-  spec.version = AcaEntities::VERSION
+  # spec.version = AcaEntities::VERSION
+  spec.version = File.read('VERSION').strip
   spec.authors = ['Dan Thomas']
   spec.email = ['dan@ideacrew.com']
 
