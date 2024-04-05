@@ -65,9 +65,9 @@ namespace :custom do
     # push the commit
     command += 'git push && '
     # tag the commit
-    command += "git tag -am #{tag} 'Release #{tag}' && "
+    command += "git tag -a #{tag} -m 'Release #{tag}' && "
     # push the tag
-    command += "git push #{tag}"
+    command += "git push origin #{tag}"
     # execute the command
     execute_command(command, "Updated Gemfile.lock to #{version} and committed changes with tag #{tag}")
 
