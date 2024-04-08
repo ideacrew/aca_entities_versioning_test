@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rake'
+require 'aca_entities/releases/release'
 
 RSpec.describe "release.rake" do
   Rake::DefaultLoader.new.load 'tasks/release.rake'
@@ -15,6 +16,8 @@ RSpec.describe "release.rake" do
       # IMPORTANT: this line stubs the system call to prevent shell commands from actually running
       # Do not modify this line
       allow(Kernel).to receive(:system).with(any_args).and_return(true)
+
+      allow_any_instance_of(Release).to receive(:current_branch_is_trunk?).and_return(false)
     end
 
     # set up rake task options and command
@@ -37,19 +40,30 @@ RSpec.describe "release.rake" do
     end
     let(:tag) { "v#{version}" }
     let(:tag_command) do
-      "git tag -am #{tag} 'Release #{tag}'"
+      "git tag -a #{tag} -m 'Release #{tag}'"
     end
     let(:push_command) do
       'git push'
     end
     let(:push_tag_command) do
-      "git push #{tag}"
+      "git push origin #{tag}"
     end
     let(:full_update_and_commit_command) do
       "#{update_gem_ref_command} && #{commit_bump_command} && #{push_command} && #{tag_command} && #{push_tag_command}"
     end
 
     context 'errors' do
+      context 'running the rake on trunk' do
+        before do
+          allow_any_instance_of(Release).to receive(:current_branch_is_trunk?).and_return(true)
+        end
+        it 'raises an error if the rake is run on the trunk branch' do
+          message = "You must NOT be on the trunk branch to create a new release."\
+                " Example: to release v1.1.0, create a branch named v1.1.0 and run this rake there."
+          expect { run_rake_task }.to raise_error(RuntimeError, message)
+        end
+      end
+
       context 'no version number provided' do
         let(:version) { nil }
 

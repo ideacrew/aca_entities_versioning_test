@@ -18,6 +18,8 @@ require 'aca_entities/libraries/insurance_policies_aca_individuals_library'
 require 'aca_entities/libraries/fdsh_library'
 require 'aca_entities/libraries/core_library'
 
+require 'aca_entities/release'
+
 # require 'aca_entities/operations/operation'
 
 # TODO: We want these to be selectively included at run time
