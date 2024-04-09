@@ -88,6 +88,8 @@ module AcaEntities
 
       attribute :timestamp, AcaEntities::TimeStamp.meta(omittable: true)
 
+      attribute :some_new_feature_support, Types::String.optional.meta(omittable: true)
+
       def home_address
         return nil if addresses.empty?
 
