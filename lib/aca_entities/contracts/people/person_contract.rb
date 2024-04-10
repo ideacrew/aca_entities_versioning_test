@@ -98,6 +98,7 @@ module AcaEntities
           )
           optional(:timestamp).hash(TimeStampContract.params)
           optional(:some_new_feature_support).maybe(:string)
+          optional(:more_new_feature_support).maybe(:string)
 
           # TODO: Add contracts
           # optional(:broker_agency_staff_roles).array(:array)
