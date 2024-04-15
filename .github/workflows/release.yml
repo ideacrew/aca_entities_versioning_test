@@ -51,18 +51,16 @@ jobs:
             }
 
             // Filter the pull requests to only include the ones that are relevant
-            // Right now we don't have the criteria in place to determine what is relevant
-            // const relevantPulls = pullRequests.filter((pull) => {
-            //  return pull.labels.some((label) => label === "server") &&
-            //    !pull.labels.some((label) => label === "dependencies") &&
-            //    !pull.labels.some((label) => label === "chore")
-            // });
+            const relevantPulls = pullRequests.filter((pull) => {
+              return !pull.labels.some((label) => label === "version-bump") &&
+              !pull.labels.some((label) => label === "chore")
+            });
 
             // Categorize the pull requests
-            const breakingChanges = pullRequests.filter((pull) => pull.labels.some((label) => label === "breaking-change"));
-            const bugFixes = pullRequests.filter((pull) => pull.labels.some((label) => label === "bugfix"));
-            const enhancements = pullRequests.filter((pull) => pull.labels.some((label) => label === "enhancement"));
-            const otherChanges = pullRequests.filter((pull) => !pull.labels.some((label) => ["bugfix", "enhancement", "breaking-change"].includes(label)));
+            const breakingChanges = relevantPulls.filter((pull) => pull.labels.some((label) => label === "breaking-change"));
+            const bugFixes = relevantPulls.filter((pull) => pull.labels.some((label) => label === "bugfix"));
+            const enhancements = relevantPulls.filter((pull) => pull.labels.some((label) => label === "enhancement"));
+            const otherChanges = relevantPulls.filter((pull) => !pull.labels.some((label) => ["bugfix", "enhancement", "breaking-change"].includes(label)));
 
             let content = `# ${{ github.ref_name }}\n`;
 
