@@ -99,6 +99,7 @@ module AcaEntities
                     add_key 'activity_id'
                     add_namespace 'activity_date', 'aces.insurance_application.application_creation.creation_date', type: :hash do
                       add_key 'date', function: lambda { |v|
+                        # imagine there was a bug here and this comment fixed it!
                         submission_date = v.resolve('submitted_at').item
                         submission_date ? Date.parse(submission_date) : Date.today
                       }
