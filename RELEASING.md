@@ -12,7 +12,7 @@ Follow the steps below to package and release a new version of the gem.
 3. Update the version number in the `lib/aca_entities/version.rb` file.
 4. Run `bundle update aca_entities` to update the `Gemfile.lock` file.
 5. Commit the changes with a message like `bump version to v1.0.0`.
-6. Push the branch and raise a pull request against trunk. The pull request title should follow the format: `bump version to v1.0.0`.
+6. Push the branch and raise a pull request against trunk. The pull request title should follow the format: `bump version to v1.0.0`. Be sure to label the pull request with the `version-bump` label.
 
 
 ## Publishing the Release
