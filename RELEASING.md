@@ -20,3 +20,4 @@ Follow the steps below to package and release a new version of the gem.
 2. Create a new annotated tag with the version number, e.g., `git tag -a v1.0.0 -m "v1.0.0"`.
 3. Push the tag to the remote repository, e.g., `git push origin refs/tags/v1.0.0`.
 4. GitHub Actions will automatically create a new release on the [GitHub Releases](https://github.com/ideacrew/aca_entities_versioning_test/releases) page with release notes. Confirm that the release was successfully published there and that all intended commits are included in the release.
+
